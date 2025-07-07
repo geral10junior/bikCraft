@@ -9,7 +9,6 @@ function ativarLink(link) {
     link.classList.add("ativo");
   }
 }
-
 links.forEach(ativarLink);
 
 //Ativar itens do orçamento
@@ -22,5 +21,28 @@ function ativarProduto(parametro) {
     elemento.checked = true;
   }
 }
-
 parametros.forEach(ativarProduto);
+
+//Perguntas Frenquentes
+
+const perguntas = document.querySelectorAll(".perguntas button");
+
+function ativarPergunta(event) {
+  const pergunta = event.currentTarget;
+  const controls = pergunta.getAttribute("aria-controls");
+  const resposta = document.getElementById(controls);
+
+  resposta.classList.toggle("ativa");
+  const ativa = resposta.classList.contains("ativa");
+  pergunta.setAttribute("aria-expanded", ativa);
+
+  console.log(resposta);
+}
+
+function eventosPerguntas(pergunta) {
+  pergunta.addEventListener("click", ativarPergunta);
+}
+
+perguntas.forEach(eventosPerguntas);
+
+console.log(perguntas);
